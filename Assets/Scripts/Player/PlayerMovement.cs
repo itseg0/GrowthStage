@@ -8,28 +8,37 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public Animator animator;
+    
+    public bool PlayerInputIsDisabled { get => _playerInputIsDisabled; set => _playerInputIsDisabled = value; }
 
     private Vector2 lastMovementDirection = Vector2.down;
+    private bool _playerInputIsDisabled = false;
+
 
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new Vector2(horizontal, vertical).normalized;
-
-        if(direction.magnitude > 0)
+        if (!PlayerInputIsDisabled)
         {
-            lastMovementDirection = direction;
-            AnimateMovement(direction);
-        }
-        else
-        {
-            AnimateIdle();
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+
+            Vector3 direction = new Vector2(horizontal, vertical).normalized;
+
+            if (direction.magnitude > 0)
+            {
+                lastMovementDirection = direction;
+                AnimateMovement(direction);
+            }
+            else
+            {
+                AnimateIdle();
+            }
+
+            transform.position += direction * speed * Time.deltaTime;
         }
 
-        transform.position += direction * speed * Time.deltaTime;
     }
 
     void AnimateMovement(Vector3 direction)
@@ -58,4 +67,17 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("vertical", lastMovementDirection.y);
         }
     }
+
+    public void EnablePlayerInput()
+    {
+        PlayerInputIsDisabled = false;
+    }
+
+    public void DisablePlayerInput()
+    {
+        PlayerInputIsDisabled = true;
+        AnimateIdle();
+    }
+
+
 }
