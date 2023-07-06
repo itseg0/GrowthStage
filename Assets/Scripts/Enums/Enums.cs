@@ -5,6 +5,7 @@ public enum ItemType
     Finished_item,
     Furniture,
     Commodity,
+    Hoeing_Tool,
     none,
     count
 }

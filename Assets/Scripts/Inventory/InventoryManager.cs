@@ -179,6 +179,22 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
         }
     }
 
+    public string GetItemDescription(ItemType itemType)
+    {
+        string itemTypeDescription;
+        switch(itemType)
+        {
+            case ItemType.Hoeing_Tool: 
+            itemTypeDescription = Settings.HoeingTool;
+                break;
+
+            default:
+                itemTypeDescription = itemType.ToString();
+                break;
+        }
+        return itemTypeDescription;
+    }
+
     public void RemoveItem(InventoryLocation inventoryLocation, int itemCode)
     {
         List<InventoryItem> inventoryList = inventoryLists[(int)inventoryLocation];
