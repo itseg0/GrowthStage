@@ -353,6 +353,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -365,6 +373,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -478,6 +490,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -490,6 +510,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -603,6 +627,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -615,6 +647,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -793,6 +829,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -805,6 +849,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -953,7 +1001,7 @@ MonoBehaviour:
   m_Follow: {fileID: 925655047}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.02
+    OrthographicSize: 6.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1078,7 +1126,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.02
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1150,6 +1198,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1162,6 +1218,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1308,6 +1368,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1320,6 +1388,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1545,6 +1617,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1557,6 +1637,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1670,6 +1754,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1682,6 +1774,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1897,6 +1993,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -1909,6 +2013,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2117,6 +2225,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -2129,6 +2245,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2412,6 +2532,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -2424,6 +2552,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2537,6 +2669,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25851554}
     m_Modifications:
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0837
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386616397924598712, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0279
+      objectReference: {fileID: 0}
     - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: itemPrefab
       value: 
@@ -2545,6 +2693,10 @@ PrefabInstance:
       propertyPath: inventoryBar
       value: 
       objectReference: {fileID: 25851557}
+    - target: {fileID: 1601911022255764061, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
+      propertyPath: inventoryTextBoxPrefab
+      value: 
+      objectReference: {fileID: 5447340574429578225, guid: fac27f1eb39c43141bd887e5e75ec540, type: 3}
     - target: {fileID: 3052537133027666940, guid: a797e9077e89f3542ae45675d9d8a85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
