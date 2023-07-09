@@ -133,20 +133,20 @@ public class UIInventoryBar : MonoBehaviour
         }
     }
 
-    private void InventoryUpdated(InventoryLocation inventoryLocation, List<InventoryItem> inventoryList)
+    private void InventoryUpdated(InventoryLocation inventoryLocation, Dictionary<int, InventoryItem> inventoryDict)
     {
         if(inventoryLocation == InventoryLocation.player)
         {
             ClearInventorySlots();
 
-            if(inventorySlot.Length > 0 && inventoryList.Count > 0)
+            if(inventorySlot.Length > 0 && inventoryDict.Count > 0)
             {
                 // Loop through inventory slots and update with corresponding inventory list item
                 for(int i = 0; i < inventorySlot.Length; i++)
                 {
-                    if(i < inventoryList.Count)
+                    if(i < inventoryDict.Count)
                     {
-                        int itemCode = inventoryList[i].itemCode;
+                        int itemCode = inventoryDict[i].itemCode;
 
                         // ItemDetails itemDetails = InventoryManager.Instance.itemList.itemDetails.Find(x => x.itemCode == itemCode);
                         ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(itemCode);
@@ -155,9 +155,9 @@ public class UIInventoryBar : MonoBehaviour
                         {
                             // Add images and details to inventory item slot
                             inventorySlot[i].inventorySlotImage.sprite = itemDetails.itemSprite;
-                            inventorySlot[i].textMeshProUGUI.text = inventoryList[i].itemQuantity.ToString();
+                            inventorySlot[i].textMeshProUGUI.text = inventoryDict[i].itemQuantity.ToString();
                             inventorySlot[i].itemDetails = itemDetails;
-                            inventorySlot[i].itemQuantity = inventoryList[i].itemQuantity;
+                            inventorySlot[i].itemQuantity = inventoryDict[i].itemQuantity;
                             SetHighlightedInventorySlots(i);
                         }
                     }
