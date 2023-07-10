@@ -23,5 +23,4 @@ public class Player : SingletonMonobehaviour<Player>
         // Vector3 viewport position for player (0,0) viewport bottom left (1,1) would be top right, etc.
         return mainCamera.WorldToViewportPoint(transform.position);
     }
-
 }

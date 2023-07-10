@@ -11,6 +11,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
     private int gameHour = 6;
     private int gameMinute = 30;
     private int gameSecond = 0;
+    private int gameDayUnreset;
     private string gameDayOfWeek = "Mon";
 
     private bool gameClockPaused = false;
@@ -61,6 +62,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
                 {
                     gameHour = 0;
                     gameDay++;
+                    gameDayUnreset++;
 
                     if (gameDay > 30)
                     {
@@ -78,6 +80,9 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
 
                             gameYear++;
 
+                            if (gameYear > 9999)
+                                gameYear = 1;
+
                             EventHandler.CallAdvanceGameYearEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSecond);
                         }
 
@@ -93,7 +98,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
 
             EventHandler.CallAdvanceGameMinuteEvent(gameYear, gameSeason, gameDay, gameDayOfWeek, gameHour, gameMinute, gameSecond);
 
-            Debug.Log("Game Year: " + gameYear + "   Game Season: " + gameSeason + "   Game Day: " + gameDay + "   Game Hour: " + gameHour + "   Game Minute: " + gameMinute);
+           // Debug.Log("Game Year: " + gameYear + "   Game Season: " + gameSeason + "   Game Day: " + gameDay + "   Game Hour: " + gameHour + "   Game Minute: " + gameMinute);
         }
 
         // Call to advance game second event would go here if required
@@ -102,7 +107,7 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
     private string GetDayOfWeek()
     {
         int totalDays = (((int)gameSeason) * 30) + gameDay;
-        int dayOfWeek = totalDays % 7;
+        int dayOfWeek = gameDayUnreset % 7;
 
         switch(dayOfWeek)
         {
@@ -131,5 +136,4 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
                 return "";
         }
     }
-
 }

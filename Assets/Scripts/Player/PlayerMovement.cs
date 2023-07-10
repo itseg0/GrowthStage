@@ -78,6 +78,4 @@ public class PlayerMovement : MonoBehaviour
         PlayerInputIsDisabled = true;
         AnimateIdle();
     }
-
-
 }
