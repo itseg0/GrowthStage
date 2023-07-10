@@ -94,7 +94,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
 
             // If there's no more quantity, clear selected
-            if(InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) == 1)
+            if(InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) > 0)
             {
                 ClearSelectedItem();
             }
@@ -164,7 +164,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 {
                     DropSelectedItemAtMousePosition();
 
-                    if(itemQuantity < 1)
+                    if(itemQuantity <= 1)
                     ClearSelectedItem();
                 }
             }
@@ -229,7 +229,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
             else
             {
-                if(itemQuantity > 0)
+                if(itemQuantity >= 1)
                 {
                     SetSelectedItem();
                 }
