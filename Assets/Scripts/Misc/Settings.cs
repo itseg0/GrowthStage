@@ -9,4 +9,7 @@ public static class Settings
 
     // Tools (Example given below)
     public const string HoeingTool = "Hoe";
+
+    // Time
+    public const float secondsPerGameSecond = 0.012f;
 }
