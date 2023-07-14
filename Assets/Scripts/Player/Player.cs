@@ -5,8 +5,6 @@ public class Player : SingletonMonobehaviour<Player>
     private Rigidbody2D rb;
     private Camera mainCamera;
 
-
-
     protected override void Awake()
     {
         base.Awake();

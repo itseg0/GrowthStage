@@ -3,8 +3,17 @@ using Cinemachine;
 
 public class SwitchConfineBoundingShape : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+   private void OnEnable()
+    {
+        EventHandler.AfterSceneLoadEvent += SceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.AfterSceneLoadEvent -= SceneLoaded;
+    }
+
+    private void SceneLoaded()
     {
         SwitchBoundingShape();
     }

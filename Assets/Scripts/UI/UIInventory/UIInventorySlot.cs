@@ -30,13 +30,24 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         parentCanvas = GetComponentInParent<Canvas>();
     }
+
+
     private void Start()
     {
         mainCamera = Camera.main;
-        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform).transform;
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
 
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.AfterSceneLoadEvent += SceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.AfterSceneLoadEvent -= SceneLoaded;
     }
 
     /// <summary>
@@ -235,5 +246,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 }
             }
         }
+    }
+
+    public void SceneLoaded()
+    {
+        parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform).transform;
     }
 }

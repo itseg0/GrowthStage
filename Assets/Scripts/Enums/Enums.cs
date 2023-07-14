@@ -26,3 +26,10 @@ public enum InventoryLocation
     count
 }
 
+public enum SceneName
+{
+    Scene1_StarterApartment,
+    Scene2_StarterHallway,
+    count
+}
+
