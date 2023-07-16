@@ -48,6 +48,9 @@ public class SceneControllerManager : SingletonMonobehaviour<SceneControllerMana
         // Call before scene unload fade out event
         EventHandler.CallBeforeSceneUnloadFadeOutEvent();
 
+        // Disable player input
+        PlayerMovement.Instance.DisablePlayerInput();
+
         // Start fading to black and wait for it to finish before continuing
         yield return StartCoroutine(Fade(1f));
 
@@ -65,6 +68,9 @@ public class SceneControllerManager : SingletonMonobehaviour<SceneControllerMana
 
         // Call after scene load event
         EventHandler.CallAfterSceneLoadEvent();
+
+        // Re-Enable player input
+        PlayerMovement.Instance.EnablePlayerInput();
 
         // Starting fading back in and wait for it to finish before exiting the function
         yield return StartCoroutine(Fade(0f));

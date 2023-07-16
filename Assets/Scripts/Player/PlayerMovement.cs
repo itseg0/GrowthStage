@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : SingletonMonobehaviour<PlayerMovement>
 {
     public float speed;
     public Animator animator;
