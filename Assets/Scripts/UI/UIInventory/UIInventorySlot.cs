@@ -91,23 +91,29 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
 
-            // Create item from prefab at mouse point
-            GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
-            Item item = itemGameObject.GetComponent<Item>();
-            item.ItemCode = itemDetails.itemCode;
-            SpriteRenderer sr = itemGameObject.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = itemDetails.itemSprite;
-            
+            Vector3Int gridPosition = GridPropertiesManager.Instance.grid.WorldToCell(worldPosition);
+            GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(gridPosition.x, gridPosition.y);
 
-            Debug.Log(item.ItemCode);
-
-            // Remove item from player's inventory
-            InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
-
-            // If there's no more quantity, clear selected
-            if(InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) > 0)
+            if(gridPropertyDetails != null && gridPropertyDetails.canDropItem)
             {
-                ClearSelectedItem();
+                // Create item from prefab at mouse point
+                GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
+                Item item = itemGameObject.GetComponent<Item>();
+                item.ItemCode = itemDetails.itemCode;
+                SpriteRenderer sr = itemGameObject.GetComponentInChildren<SpriteRenderer>();
+                sr.sprite = itemDetails.itemSprite;
+
+
+                Debug.Log(item.ItemCode);
+
+                // Remove item from player's inventory
+                InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
+
+                // If there's no more quantity, clear selected
+                if (InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) > 0)
+                {
+                    ClearSelectedItem();
+                }
             }
         }
     }

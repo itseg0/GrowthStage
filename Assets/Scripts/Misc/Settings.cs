@@ -12,4 +12,7 @@ public static class Settings
 
     // Time
     public const float secondsPerGameSecond = 0.012f;
+
+    // Tile map
+    public const float gridCellSize = 1f; // Grid cell size in unity units
 }
