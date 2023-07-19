@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ff27ef1bed7bd4a82037af1471c162, type: 3}
+  m_Name: so_GridProperties_Scene2
+  m_EditorClassIdentifier: 
+  sceneName: 1
+  gridWidth: 19
+  gridHeight: 10
+  originX: -13
+  originY: -5
+  gridPropertyList: []

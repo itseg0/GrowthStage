@@ -33,3 +33,11 @@ public enum SceneName
     count
 }
 
+public enum GridBoolProperty
+{
+    canDropItem,
+    canPlaceFurniture,
+    isPath,
+    isNPCObstacle
+}
+
