@@ -269,6 +269,25 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
         }
     }
 
+    public ItemDetails GetSelectedInventoryItemDetails(InventoryLocation inventoryLocation)
+    {
+        int itemCode = GetSelectedInventoryItem(inventoryLocation);
+
+        if(itemCode == -1) 
+            return null;
+
+        else
+            return GetItemDetails(itemCode);
+    }
+
+    /// <summary>
+    /// Get the selected item for the inventoryLocation - returns ItemCode or -1 if nothing is selected
+    /// </summary>
+    private int GetSelectedInventoryItem(InventoryLocation inventoryLocation)
+    {
+        return selectedInventoryItem[(int)inventoryLocation];
+    }
+
     /// <summary>
     /// Returns itemDetails for selected item in inv location or null if nothing is selected
     /// </summary>

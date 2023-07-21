@@ -12,6 +12,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private PlayerMovement playerMovement;
     private GameObject player;
     private Canvas parentCanvas;
+    private GridCursor gridCursor;
 
     public Image inventorySlotHighlight;
     public Image inventorySlotImage;
@@ -37,6 +38,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         mainCamera = Camera.main;
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+        gridCursor = FindObjectOfType<GridCursor>();
 
     }
 
@@ -48,6 +50,13 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void OnDisable()
     {
         EventHandler.AfterSceneLoadEvent -= SceneLoaded;
+    }
+
+    private void ClearCursors()
+    {
+        gridCursor.DisableCursor();
+
+        // gridCursor.SelectedItemType = ItemType.none;
     }
 
     /// <summary>
@@ -64,12 +73,29 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // Set highlighted inventory slots
         inventoryBar.SetHighlightedInventorySlots();
 
+        // Set use radius for cursors
+        gridCursor.ItemUseGridRadius = itemDetails.itemUseGridRadius;
+
+        if(itemDetails.itemUseGridRadius > 0)
+        {
+            gridCursor.EnableCursor();
+        }
+        else
+        {
+            gridCursor.DisableCursor();
+        }
+
+        // Set item type
+        gridCursor.SelectedItemType = itemDetails.itemType;
+
         // Set item selected in inventory
         InventoryManager.Instance.SetSelectedInventoryItem(InventoryLocation.player, itemDetails.itemCode);
     }
 
     private void ClearSelectedItem()
     {
+        ClearCursors();
+
         // Clear currently highlighted items
         inventoryBar.ClearHighlightOnInventorySlots();
 
@@ -79,7 +105,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         InventoryManager.Instance.ClearSelectedInventoryItem(InventoryLocation.player);
     }
 
-    
+
 
     /// <summary>
     /// Drops the item at the current mouse position.
@@ -87,22 +113,30 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void DropSelectedItemAtMousePosition()
     {
-        if(itemDetails != null && isSelected)
+        if (itemDetails != null && isSelected)
         {
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
 
             Vector3Int gridPosition = GridPropertiesManager.Instance.grid.WorldToCell(worldPosition);
+            Vector3 tileCenterWorldPosition = GridPropertiesManager.Instance.grid.GetCellCenterWorld(gridPosition);
+
             GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(gridPosition.x, gridPosition.y);
 
-            if(gridPropertyDetails != null && gridPropertyDetails.canDropItem)
+            if (gridCursor.CursorPositionIsValid)
             {
-                // Create item from prefab at mouse point
-                GameObject itemGameObject = Instantiate(itemPrefab, worldPosition, Quaternion.identity, parentItem);
+                // Center the item on the tile
+                float itemHalfWidth = itemPrefab.GetComponentInChildren<SpriteRenderer>().bounds.extents.x;
+                float itemHalfHeight = itemPrefab.GetComponentInChildren<SpriteRenderer>().bounds.extents.y;
+                Vector3 centeredPosition = new Vector3(tileCenterWorldPosition.x, tileCenterWorldPosition.y, 0f);
+                centeredPosition.x += itemHalfWidth;
+                centeredPosition.y += itemHalfHeight;
+
+                // Create item from prefab at centered position
+                GameObject itemGameObject = Instantiate(itemPrefab, centeredPosition, Quaternion.identity, parentItem);
                 Item item = itemGameObject.GetComponent<Item>();
                 item.ItemCode = itemDetails.itemCode;
                 SpriteRenderer sr = itemGameObject.GetComponentInChildren<SpriteRenderer>();
                 sr.sprite = itemDetails.itemSprite;
-
 
                 Debug.Log(item.ItemCode);
 
@@ -228,7 +262,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void DestroyInventoryTextBox()
     {
-        if(inventoryBar.inventoryTextBoxGameObject != null)
+        if (inventoryBar != null && inventoryBar.inventoryTextBoxGameObject != null)
         {
             Destroy(inventoryBar.inventoryTextBoxGameObject);
         }

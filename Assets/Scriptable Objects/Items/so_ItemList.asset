@@ -31,7 +31,7 @@ MonoBehaviour:
     itemSprite: {fileID: 21300000, guid: b0616bd463d3ae74e9adc54a6ad97949, type: 3}
     itemLongDescription: Big ahh pumpkin
     itemUseGridRadius: 2
-    itemUseRadius: 0
+    itemUseRadius: 5
     isStartingItem: 0
     canBePickedUp: 1
     canBeDropped: 1
