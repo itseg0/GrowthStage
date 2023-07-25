@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using Unity.Mathematics;
+using System.Collections.Generic;
 
 public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -20,6 +22,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     [SerializeField] private UIInventoryBar inventoryBar = null;
     [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private GameObject furniturePrefab1x1;
     [SerializeField] private int slotNumber = 0;
     [SerializeField] private GameObject inventoryTextBoxPrefab;
 
@@ -131,6 +134,22 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 centeredPosition.x += itemHalfWidth;
                 centeredPosition.y += itemHalfHeight;
 
+                // Check if there's already furniture on the target tile
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(tileCenterWorldPosition, 0.1f); // Adjust the radius as needed
+
+                if (colliders.Length > 0)
+                {
+                    foreach (Collider2D collider in colliders)
+                    {
+                        // Check if there's furniture in the tile
+                        if (collider.CompareTag("Furniture") || collider.CompareTag("Item"))
+                        {
+                            Debug.Log("Cannot drop multiple furniture items in the same tile!");
+                            return;
+                        }
+                    }
+                }
+
                 // Create item from prefab at centered position
                 GameObject itemGameObject = Instantiate(itemPrefab, centeredPosition, Quaternion.identity, parentItem);
                 Item item = itemGameObject.GetComponent<Item>();
@@ -151,6 +170,51 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
     }
+
+    private void DropSelectedFurnitureAtMousePosition()
+    {
+        if (itemDetails != null && isSelected && gridCursor.CursorPositionIsValid)
+        {
+            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
+            Vector3Int gridPosition = GridPropertiesManager.Instance.grid.WorldToCell(worldPosition);
+            Vector3 tileCenterWorldPosition = GridPropertiesManager.Instance.grid.GetCellCenterWorld(gridPosition);
+
+            // Check if there's already furniture on the target tile
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(tileCenterWorldPosition, 0.1f); // Adjust the radius as needed
+
+            if (colliders.Length > 0)
+            {
+                foreach (Collider2D collider in colliders)
+                {
+                    // Check if there's furniture in the tile
+                    if (collider.CompareTag("Furniture") || collider.CompareTag("Item"))
+                    {
+                        Debug.Log("Cannot drop multiple furniture items in the same tile!");
+                        return;
+                    }
+                }
+            }
+
+            // Center the furniture on the tile
+            float itemHalfWidth = furniturePrefab1x1.GetComponentInChildren<SpriteRenderer>().bounds.extents.x;
+            float itemHalfHeight = furniturePrefab1x1.GetComponentInChildren<SpriteRenderer>().bounds.extents.y;
+            Vector3 centeredPosition = new Vector3(tileCenterWorldPosition.x + itemHalfWidth, tileCenterWorldPosition.y + itemHalfHeight, 0f);
+
+            // Instantiate the furniture prefab at the centered position and add it to the parentItem transform.
+            GameObject furnitureGameObject = Instantiate(furniturePrefab1x1, centeredPosition, Quaternion.identity, parentItem);
+            Item furnitureItem = furnitureGameObject.GetComponent<Item>();
+            furnitureItem.ItemCode = itemDetails.itemCode;
+            SpriteRenderer furnitureSr = furnitureGameObject.GetComponentInChildren<SpriteRenderer>();
+            furnitureSr.sprite = itemDetails.itemSprite;
+
+            Debug.Log(furnitureItem.ItemCode);
+
+            // Remove the furniture item from the player's inventory
+            InventoryManager.Instance.RemoveItem(InventoryLocation.player, furnitureItem.ItemCode);
+        }
+    }
+
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -213,7 +277,16 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 if(itemDetails.canBeDropped)
                 {
-                    DropSelectedItemAtMousePosition();
+
+                    if(itemDetails.isFurniture)
+                    {
+                        DropSelectedFurnitureAtMousePosition();
+                    }
+
+                    else
+                    {
+                        DropSelectedItemAtMousePosition();
+                    }
 
                     if(itemQuantity <= 1)
                     ClearSelectedItem();

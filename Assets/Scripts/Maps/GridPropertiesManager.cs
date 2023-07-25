@@ -44,13 +44,13 @@ public class GridPropertiesManager : SingletonMonobehaviour<GridPropertiesManage
     /// </summary>
     private void InitialiseGridProperties()
     {
-        // Loop through all gridproperties in the array
+        // Loop through all grid properties in the array
         foreach (SO_GridProperties so_GridProperties in so_gridPropertiesArray)
         {
             // Create dictionary of grid property details
             Dictionary<string, GridPropertyDetails> gridPropertyDictionary = new Dictionary<string, GridPropertyDetails>();
 
-            // Populate grid property dictionary - Iterate through all the grid properties in the so gridproperties list
+            // Populate grid property dictionary - Iterate through all the grid properties in the so grid properties list
             foreach (GridProperty gridProperty in so_GridProperties.gridPropertyList)
             {
                 GridPropertyDetails gridPropertyDetails;
@@ -84,6 +84,10 @@ public class GridPropertiesManager : SingletonMonobehaviour<GridPropertiesManage
                         break;
                 }
 
+                // Set the initial values for hasItem and hasFurniture to false
+                gridPropertyDetails.hasItem = false;
+                gridPropertyDetails.hasFurniture = false;
+
                 SetGridPropertyDetails(gridProperty.gridCoordinate.x, gridProperty.gridCoordinate.y, gridPropertyDetails, gridPropertyDictionary);
             }
 
@@ -104,6 +108,7 @@ public class GridPropertiesManager : SingletonMonobehaviour<GridPropertiesManage
         }
     }
 
+
     /// <summary>
     /// Set the grid property details in gridPropertyDetails for the tile at gridX, gridY for the gridpropertyDetails
     /// </summary>
@@ -116,6 +121,7 @@ public class GridPropertiesManager : SingletonMonobehaviour<GridPropertiesManage
 
         gridPropertyDictionary[key] = gridPropertyDetails;
     }
+
 
     public void SetGridPropertyDetails(int gridX, int gridY, GridPropertyDetails gridPropertyDetails)
     {

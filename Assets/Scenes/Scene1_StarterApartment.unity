@@ -130,9 +130,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1032827250}
     m_Modifications:
+    - target: {fileID: 5547210331625791253, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
+      propertyPath: _itemCode
+      value: 10003
+      objectReference: {fileID: 0}
     - target: {fileID: 5547210331625791254, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
       propertyPath: m_Name
-      value: Pumpkin
+      value: PlantPot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547210331625791254, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5547210331625791255, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
       propertyPath: m_RootOrder
@@ -178,6 +186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6316709857817428273, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1178415212, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71c6241a42d27fd4898320265c54e8fd, type: 3}
 --- !u!4 &61036057 stripped
@@ -2000,7 +2012,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 9
-      m_TileSpriteIndex: 9
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -2030,7 +2042,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -3529,10 +3541,10 @@ Tilemap:
     m_Data: {fileID: -2118310856, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 1692958768, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -2017712118, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -550660296, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1472234548, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
   - m_RefCount: 1
@@ -3545,8 +3557,8 @@ Tilemap:
     m_Data: {fileID: 4220175, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1539731457, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -550660296, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 148
     m_Data:

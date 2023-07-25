@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 869414327235485386}
   m_Layer: 0
   m_Name: ItemSprite
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 1675928380002107631}
   - component: {fileID: 1675928380002107630}
   m_Layer: 0
-  m_Name: Item
-  m_TagString: Item
+  m_Name: Furniture
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,10 +128,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.18548343}
+  m_Offset: {x: 0, y: -0.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.77060515}
+  m_Size: {x: 0.63, y: 0.91}
   m_EdgeRadius: 0
 --- !u!114 &1675928380002107630
 MonoBehaviour:

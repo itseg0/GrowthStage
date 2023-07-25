@@ -11,6 +11,8 @@ public class GridPropertyDetails
     public int seedItemCode;
     public int growthDays;
     public int daysSinceLastHarvest;
+    public bool hasItem;
+    public bool hasFurniture;
 
     public GridPropertyDetails()
     {

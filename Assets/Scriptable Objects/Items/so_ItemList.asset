@@ -25,6 +25,8 @@ MonoBehaviour:
     canBeDropped: 1
     canBeUsed: 0
     canBeCarried: 1
+    isFurniture: 0
+    isPot: 0
   - itemDescription: Pumpkin_Test
     itemCode: 10001
     itemType: 4
@@ -37,6 +39,8 @@ MonoBehaviour:
     canBeDropped: 1
     canBeUsed: 1
     canBeCarried: 1
+    isFurniture: 0
+    isPot: 0
   - itemDescription: Corn_Test
     itemCode: 10002
     itemType: 4
@@ -45,8 +49,24 @@ MonoBehaviour:
       good
     itemUseGridRadius: 2
     itemUseRadius: 0
-    isStartingItem: 0
+    isStartingItem: 1
     canBePickedUp: 1
     canBeDropped: 1
     canBeUsed: 1
     canBeCarried: 1
+    isFurniture: 0
+    isPot: 0
+  - itemDescription: Old Rubbish Bin
+    itemCode: 10003
+    itemType: 3
+    itemSprite: {fileID: 1178415212, guid: b33cd7d4948787e44b2f5b0c5a97b34f, type: 3}
+    itemLongDescription: A stinky, old bin.. I guess you could fill it with plants?
+    itemUseGridRadius: 2
+    itemUseRadius: 2
+    isStartingItem: 1
+    canBePickedUp: 0
+    canBeDropped: 1
+    canBeUsed: 1
+    canBeCarried: 1
+    isFurniture: 1
+    isPot: 0

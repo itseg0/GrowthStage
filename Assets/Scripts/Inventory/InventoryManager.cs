@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : SingletonMonobehaviour<InventoryManager>
@@ -37,6 +39,8 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
             selectedInventoryItem[i] = -1;
 
         }
+
+        AddStartingItems();
     }
 
     private void Start()
@@ -48,11 +52,23 @@ public class InventoryManager : SingletonMonobehaviour<InventoryManager>
     }
 
 
+    private void AddStartingItems()
+    {
+        // Get a list of all items with isStartingItem set to true
+        List<ItemDetails> startingItems = itemList.itemDetails.Where(item => item.isStartingItem).ToList();
+
+        // Add each starting item to the player's inventory
+        foreach (ItemDetails startingItem in startingItems)
+        {
+            AddItem(InventoryLocation.player, startingItem.itemCode);
+        }
+    }
+
     /// <summary>
     /// Populates the inventoryLists with the count of InventoryLocation and then creates a list of InventoryItem for each.
     /// <br>Also initialises both the inventory list capacity array and the player inventory list capacity.</br>
     /// </summary>
-    
+
     private void CreateInventoryLists()
     {
 

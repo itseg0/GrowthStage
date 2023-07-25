@@ -18,4 +18,6 @@ public class ItemDetails
     public bool canBeDropped;
     public bool canBeUsed;
     public bool canBeCarried;
+    public bool isFurniture;
+    public bool isPot;
 }
