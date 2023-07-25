@@ -4,6 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 
+
 public class ItemDetails
 {
     public string itemDescription;

@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using System;
 using Unity.Mathematics;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -16,9 +18,10 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Canvas parentCanvas;
     private GridCursor gridCursor;
 
-    public Image inventorySlotHighlight;
-    public Image inventorySlotImage;
+    public UnityEngine.UI.Image inventorySlotHighlight;
+    public UnityEngine.UI.Image inventorySlotImage;
     public TextMeshProUGUI textMeshProUGUI;
+    public bool isTileOccupied = false;
 
     [SerializeField] private UIInventoryBar inventoryBar = null;
     [SerializeField] private GameObject itemPrefab;
@@ -30,10 +33,16 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [HideInInspector] public int itemQuantity;
     [HideInInspector] public bool isSelected = false;
 
+    public static Dictionary<Guid, Vector3Int> staticItemTileMap = new Dictionary<Guid, Vector3Int>();
+    public static List<UIInventorySlot> allSlots = new List<UIInventorySlot>();
+
+
     private void Awake()
     {
         parentCanvas = GetComponentInParent<Canvas>();
+        allSlots.Add(this);
     }
+
 
 
     private void Start()
@@ -41,8 +50,14 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         mainCamera = Camera.main;
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+
         gridCursor = FindObjectOfType<GridCursor>();
 
+        // Initialize the GridCursor with this UIInventorySlot instance
+        if (gridCursor != null)
+        {
+            gridCursor.Initialise(this);
+        }
     }
 
     private void OnEnable()
@@ -159,6 +174,12 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
                 Debug.Log(item.ItemCode);
 
+                item.UniqueIdentifier = Guid.NewGuid();
+
+                staticItemTileMap.Add(item.UniqueIdentifier, gridPosition);
+
+                DebugItemTileMap();
+
                 // Remove item from player's inventory
                 InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
 
@@ -209,6 +230,12 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
             Debug.Log(furnitureItem.ItemCode);
 
+            furnitureItem.UniqueIdentifier = Guid.NewGuid();
+
+            staticItemTileMap.Add(furnitureItem.UniqueIdentifier, gridPosition);
+
+            DebugItemTileMap();
+
             // Remove the furniture item from the player's inventory
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, furnitureItem.ItemCode);
         }
@@ -233,7 +260,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             draggedItem = Instantiate(inventoryBar.inventoryBarDraggedItem, inventoryBar.transform);
 
             // Get image for dragged item
-            Image draggedItemImage = draggedItem.GetComponentInChildren<Image>();
+            UnityEngine.UI.Image draggedItemImage = draggedItem.GetComponentInChildren<UnityEngine.UI.Image>();
             draggedItemImage.sprite = inventorySlotImage.sprite;
 
             // Select item on drag
@@ -364,5 +391,24 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void SceneLoaded()
     {
         parentItem = GameObject.FindGameObjectWithTag(Tags.ItemsParentTransform).transform;
+    }
+
+    public static void RemoveItemFromTileMap(Guid uniqueIdentifier)
+    {
+        if (staticItemTileMap.ContainsKey(uniqueIdentifier))
+        {
+            staticItemTileMap.Remove(uniqueIdentifier);
+            Debug.Log("Item removed from tile map with identifier: " + uniqueIdentifier);
+        }
+    }
+
+    // Debug the itemTileMap
+    public static void DebugItemTileMap()
+    {
+        Debug.Log("ItemTileMap dictionary entries:");
+        foreach (var entry in staticItemTileMap)
+        {
+            Debug.Log("Key: " + entry.Key + ", Value: " + entry.Value);
+        }
     }
 }

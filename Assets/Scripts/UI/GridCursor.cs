@@ -6,6 +6,7 @@ public class GridCursor : MonoBehaviour
     private Canvas canvas;
     private Grid grid;
     private Camera mainCamera;
+    private UIInventorySlot uiInventorySlot;
     [SerializeField] private Image cursorImage = null;
     [SerializeField] private RectTransform cursorRectTransform = null;
     [SerializeField] private Sprite greenCursorSprite = null;
@@ -38,6 +39,12 @@ public class GridCursor : MonoBehaviour
     {
         mainCamera = Camera.main;
         canvas = GetComponentInParent<Canvas>();
+
+    }
+
+    public void Initialise(UIInventorySlot inventorySlot)
+    {
+        uiInventorySlot = inventorySlot;
     }
 
     // Update is called once per frame
@@ -59,7 +66,14 @@ public class GridCursor : MonoBehaviour
             // Get grid position for player
             Vector3Int playerGridPosition = GetGridPositionForPlayer();
 
-            // Set cursor sprite
+            // Debug.Log("Is Tile Occupied: " + IsItemOccupiedAtGridPosition(gridPosition));
+
+            // Set cursor validity based on item occupancy
+            if (IsItemOccupiedAtGridPosition(gridPosition))
+            {
+                SetCursorToInvalid();
+            }
+
             SetCursorValidity(gridPosition, playerGridPosition);
 
             // Get rect transform position for cursor
@@ -73,6 +87,25 @@ public class GridCursor : MonoBehaviour
         }
     }
 
+    private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition)
+    {
+        UIInventorySlot[] inventorySlots = FindObjectsOfType<UIInventorySlot>();
+
+        foreach (UIInventorySlot inventorySlot in inventorySlots)
+        {
+            foreach (var entry in UIInventorySlot.staticItemTileMap)
+            {
+                if (entry.Value == gridPosition)
+                { 
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
     private void SceneLoaded()
     {
         grid = GameObject.FindObjectOfType<Grid>();
@@ -80,8 +113,6 @@ public class GridCursor : MonoBehaviour
 
     private void SetCursorValidity(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
-        SetCursorToValid();
-
         // Check item use radius is valid
         if (Mathf.Abs(cursorGridPosition.x - playerGridPosition.x) > ItemUseGridRadius
             || Mathf.Abs(cursorGridPosition.y - playerGridPosition.y) > ItemUseGridRadius)
@@ -116,7 +147,6 @@ public class GridCursor : MonoBehaviour
                     break;
 
                 case ItemType.Commodity:
-
                     if (!IsCursorValidForCommodity(gridPropertyDetails))
                     {
                         SetCursorToInvalid();
@@ -139,7 +169,19 @@ public class GridCursor : MonoBehaviour
             SetCursorToInvalid();
             return;
         }
+
+        // Check item occupancy
+        if (IsItemOccupiedAtGridPosition(cursorGridPosition))
+        {
+            SetCursorToInvalid();
+        }
+        else
+        {
+            SetCursorToValid();
+        }
     }
+
+
 
     /// <summary>
     /// Set the cursor to be invalid

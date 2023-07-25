@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Item : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Item : MonoBehaviour
 
     public int ItemCode { get { return _itemCode; } set { _itemCode = value; } }
     public Sprite ItemSprite { get { return _itemSprite; } set { _itemSprite = value; } }
+
+    public Guid UniqueIdentifier { get; set; }
 
     private void Awake()
     {
@@ -29,5 +32,10 @@ public class Item : MonoBehaviour
     {
         _itemCode = itemCodeParam;
         _itemSprite = spriteRenderer.sprite;
+    }
+
+    public void SetUniqueIdentifier(Guid identifier)
+    {
+        UniqueIdentifier = identifier;
     }
 }
