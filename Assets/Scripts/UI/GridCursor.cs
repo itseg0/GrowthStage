@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,20 +90,33 @@ public class GridCursor : MonoBehaviour
 
     private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition)
     {
-        UIInventorySlot[] inventorySlots = FindObjectsOfType<UIInventorySlot>();
+        ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
 
-        foreach (UIInventorySlot inventorySlot in inventorySlots)
+        if (itemPickup == null)
         {
-            foreach (var entry in UIInventorySlot.staticItemTileMap)
+            Debug.LogError("ItemPickup not found in the scene.");
+            return false;
+        }
+
+        // Get the current scene name
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        // Check if the current scene exists in the sceneItemTileMaps dictionary
+        if (itemPickup.sceneItemTileMaps.TryGetValue(currentSceneName, out Dictionary<string, Vector3Int> sceneItemTileMap))
+        {
+            // Check if the grid position exists in the current scene's itemTileMap
+            foreach (var entry in sceneItemTileMap)
             {
                 if (entry.Value == gridPosition)
-                { 
+                {
                     return true;
                 }
             }
         }
+
         return false;
     }
+
 
 
 

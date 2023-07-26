@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
 
 public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -36,11 +37,12 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public static Dictionary<Guid, Vector3Int> staticItemTileMap = new Dictionary<Guid, Vector3Int>();
     public static List<UIInventorySlot> allSlots = new List<UIInventorySlot>();
 
-
     private void Awake()
     {
         parentCanvas = GetComponentInParent<Canvas>();
         allSlots.Add(this);
+
+
     }
 
 
@@ -176,10 +178,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
                 item.UniqueIdentifier = Guid.NewGuid();
 
-                staticItemTileMap.Add(item.UniqueIdentifier, gridPosition);
-
-                DebugItemTileMap();
-
                 // Remove item from player's inventory
                 InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
 
@@ -188,8 +186,18 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 {
                     ClearSelectedItem();
                 }
+
+                // Use ItemPickup script to add item to the tile map
+                ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, item.UniqueIdentifier.ToString(), gridPosition);
+
+                // Debug the tile map from ItemPickup script
+                ItemPickup.Instance.DebugSceneItemTileMap(SceneManager.GetActiveScene().name);
+
+                // Remove item from player's inventory
+                InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
             }
         }
+        
     }
 
     private void DropSelectedFurnitureAtMousePosition()
@@ -232,12 +240,14 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
             furnitureItem.UniqueIdentifier = Guid.NewGuid();
 
-            staticItemTileMap.Add(furnitureItem.UniqueIdentifier, gridPosition);
-
-            DebugItemTileMap();
-
             // Remove the furniture item from the player's inventory
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, furnitureItem.ItemCode);
+
+            // Use ItemPickup script to add item to the tile map
+            ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, furnitureItem.UniqueIdentifier.ToString(), gridPosition);
+
+            // Debug the tile map from ItemPickup script
+            ItemPickup.Instance.DebugSceneItemTileMap(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -402,13 +412,5 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
-    // Debug the itemTileMap
-    public static void DebugItemTileMap()
-    {
-        Debug.Log("ItemTileMap dictionary entries:");
-        foreach (var entry in staticItemTileMap)
-        {
-            Debug.Log("Key: " + entry.Key + ", Value: " + entry.Value);
-        }
-    }
+    
 }

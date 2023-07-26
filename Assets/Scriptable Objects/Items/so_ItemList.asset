@@ -34,7 +34,7 @@ MonoBehaviour:
     itemLongDescription: Big ahh pumpkin
     itemUseGridRadius: 2
     itemUseRadius: 5
-    isStartingItem: 0
+    isStartingItem: 1
     canBePickedUp: 1
     canBeDropped: 1
     canBeUsed: 1

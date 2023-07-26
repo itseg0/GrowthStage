@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class SceneSave
 {
-    // String key is an indentifier name we choose for the list
     public List<SceneItem> listSceneItem;
-
+    public Dictionary<string, Vector3Int> itemTileMap;
     public Dictionary<string, GridPropertyDetails> gridPropertyDetailsDictionary;
 }

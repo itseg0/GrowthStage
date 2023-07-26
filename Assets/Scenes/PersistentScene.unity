@@ -1986,6 +1986,7 @@ GameObject:
   - component: {fileID: 925655052}
   - component: {fileID: 925655048}
   - component: {fileID: 925655053}
+  - component: {fileID: 925655054}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2094,6 +2095,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.782949, y: 0.1700983}
   m_EdgeRadius: 0
+--- !u!114 &925655054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925655045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116bef883ee89644b94ca0942f362424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gUID: e8a6d7c3-936b-4d45-9288-2194d9d1b07a
 --- !u!1001 &970429559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4049,6 +4063,7 @@ MonoBehaviour:
   inventorySlotHighlight: {fileID: 7612223492030947865}
   inventorySlotImage: {fileID: 1836414918400483714}
   textMeshProUGUI: {fileID: 7901849659028557157}
+  isTileOccupied: 0
   inventoryBar: {fileID: 0}
   itemPrefab: {fileID: 4928491347050654073, guid: 1f9d58cff8e6a5d49b24be243ef0d537, type: 3}
   furniturePrefab1x1: {fileID: 4928491347050654073, guid: 1f9d58cff8e6a5d49b24be243ef0d537, type: 3}

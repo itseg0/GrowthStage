@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,7 @@ public class SceneItem
     public Vector3Serializable position;
     public string itemName;
     public Sprite sprite;
+    public string guid;
 
     public SceneItem()
     {

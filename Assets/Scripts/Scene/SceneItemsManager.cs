@@ -77,6 +77,7 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
             sceneItem.position = new Vector3Serializable(item.transform.position.x, item.transform.position.y, item.transform.position.z);
             sceneItem.itemName = item.name;
             sceneItem.sprite = item.ItemSprite;
+            sceneItem.guid = item.UniqueIdentifier.ToString();
 
             // Add scene item to the list
             sceneItemList.Add(sceneItem);
@@ -102,6 +103,8 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
             Item item = itemGameObject.GetComponent<Item>();
             item.ItemCode = sceneItem.itemCode;
             item.name = sceneItem.itemName;
+            item.UniqueIdentifier = System.Guid.Parse(sceneItem.guid);
+
 
             // Find the ItemSprite child GameObject and set its sprite
             Transform itemSpriteTransform = itemGameObject.transform.Find("ItemSprite");
