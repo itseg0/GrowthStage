@@ -238,6 +238,14 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
             Debug.Log(furnitureItem.ItemCode);
 
+            FurnitureColliderResizer colliderResizer = furnitureGameObject.GetComponent<FurnitureColliderResizer>();
+
+            if(colliderResizer != null)
+            {
+                colliderResizer.ResizeCollider();
+                Debug.Log("Resized Collider");
+            }
+
             furnitureItem.UniqueIdentifier = Guid.NewGuid();
 
             // Remove the furniture item from the player's inventory

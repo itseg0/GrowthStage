@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
     private Sprite _itemSprite;
 
     public int ItemCode { get { return _itemCode; } set { _itemCode = value; } }
+    public ItemType ItemType { get; set; }
     public Sprite ItemSprite { get { return _itemSprite; } set { _itemSprite = value; } }
 
     public Guid UniqueIdentifier { get; set; }

@@ -6,6 +6,7 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
 {
     private Transform parentItem;
     [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private GameObject furniturePrefab;
 
     private string _iSaveableUniqueID;
 
@@ -79,6 +80,13 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
             sceneItem.sprite = item.ItemSprite;
             sceneItem.guid = item.UniqueIdentifier.ToString();
 
+            // Add ItemType from ItemDetails to the SceneItem
+            ItemDetails itemDetails = InventoryManager.Instance.GetItemDetails(item.ItemCode);
+            if (itemDetails != null)
+            {
+                sceneItem.itemType = itemDetails.itemType;
+            }
+
             // Add scene item to the list
             sceneItemList.Add(sceneItem);
         }
@@ -97,14 +105,16 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
 
         foreach (SceneItem sceneItem in sceneItemList)
         {
-            itemGameObject = Instantiate(itemPrefab, new Vector3(sceneItem.position.x, sceneItem.position.y, sceneItem.position.z), Quaternion.identity, parentItem);
+            // Use the appropriate prefab based on ItemType
+            GameObject prefabToUse = sceneItem.itemType == ItemType.Furniture ? furniturePrefab : itemPrefab;
+
+            itemGameObject = Instantiate(prefabToUse, new Vector3(sceneItem.position.x, sceneItem.position.y, sceneItem.position.z), Quaternion.identity, parentItem);
 
             // Find the Item script on the item GameObject
             Item item = itemGameObject.GetComponent<Item>();
             item.ItemCode = sceneItem.itemCode;
             item.name = sceneItem.itemName;
             item.UniqueIdentifier = System.Guid.Parse(sceneItem.guid);
-
 
             // Find the ItemSprite child GameObject and set its sprite
             Transform itemSpriteTransform = itemGameObject.transform.Find("ItemSprite");
@@ -116,8 +126,19 @@ public class SceneItemsManager : SingletonMonobehaviour<SceneItemsManager>, ISav
                     itemSpriteRenderer.sprite = sceneItem.sprite;
                 }
             }
+
+            if (sceneItem.itemType == ItemType.Furniture)
+            {
+                FurnitureColliderResizer colliderResizer = itemGameObject.GetComponent<FurnitureColliderResizer>();
+                if (colliderResizer != null)
+                {
+                    colliderResizer.ResizeCollider();
+                }
+            }
         }
     }
+
+
 
 
     public void ISaveableRestoreScene(string sceneName)

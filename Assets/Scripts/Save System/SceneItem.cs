@@ -9,6 +9,7 @@ public class SceneItem
     public string itemName;
     public Sprite sprite;
     public string guid;
+    public ItemType itemType;
 
     public SceneItem()
     {
