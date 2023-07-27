@@ -1,22 +1,7 @@
 fileFormatVersion: 2
-guid: 5a1df36ac90cfa242908df77f9674580
+guid: 15f439c9e6427f3418616d9bc38f7d3a
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6634833228405365077
-    second: ParsnipCrop_0
-  - first:
-      213: -8204859348171178890
-    second: ParsnipCrop_1
-  - first:
-      213: -4573777506729046043
-    second: ParsnipCrop_2
-  - first:
-      213: 7041525069147447728
-    second: ParsnipCrop_3
-  - first:
-      213: 7193783865090184285
-    second: ParsnipCrop_4
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -77,8 +62,8 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
-  cookieLightType: 1
+  applyGammaDecoding: 0
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -97,19 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -133,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -144,12 +117,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ParsnipCrop_0
+      name: Walk-Arms_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
+        y: 96
+        width: 32
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -158,40 +131,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdde98cd07292ab4781023e59c75f52d
-      internalID: 6634833228405365077
+      spriteID: 1b9297144348e104f95558dbcaf6a2e3
+      internalID: 2072706830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ParsnipCrop_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ba87a6d4f8bf614cb9511cbe2d8a36a
-      internalID: -8204859348171178890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ParsnipCrop_2
+      name: Walk-Arms_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
-        width: 16
+        y: 96
+        width: 32
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -200,40 +152,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf0b555ad2642384da79b4fc8fae97e6
-      internalID: -4573777506729046043
+      spriteID: f9cc66211eee1dd44b15a3b82eda05c3
+      internalID: 758473092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ParsnipCrop_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b55e4e0ab83087b4cb32d3ad1d3df961
-      internalID: 7041525069147447728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ParsnipCrop_4
+      name: Walk-Arms_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 16
+        y: 96
+        width: 32
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -242,8 +173,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a568429657b051243a2389249abbc979
-      internalID: 7193783865090184285
+      spriteID: 5c370c50236039a4a9013762a3105309
+      internalID: -860474861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk-Arms_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da06615c7e0ee394da2ad521cf89cd9e
+      internalID: -618506941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk-Arms_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594180e2ec34eb041afe5452eb5c45f7
+      internalID: 2041422708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk-Arms_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9095c2b9268601048976d4fc21d1bbd2
+      internalID: 493341061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk-Arms_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38a0c069e18cc234ca52d9a99a1f5b20
+      internalID: 2129539612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walk-Arms_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26059b7294521cc499771fb16c368a7c
+      internalID: -746164624
       vertices: []
       indices: 
       edges: []
@@ -259,11 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ParsnipCrop_0: 6634833228405365077
-      ParsnipCrop_1: -8204859348171178890
-      ParsnipCrop_2: -4573777506729046043
-      ParsnipCrop_3: 7041525069147447728
-      ParsnipCrop_4: 7193783865090184285
+      Walk-Arms_0: 2072706830
+      Walk-Arms_1: 758473092
+      Walk-Arms_2: -860474861
+      Walk-Arms_3: -618506941
+      Walk-Arms_4: 2041422708
+      Walk-Arms_5: 493341061
+      Walk-Arms_6: 2129539612
+      Walk-Arms_7: -746164624
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
