@@ -136,4 +136,24 @@ public class TimeManager : SingletonMonobehaviour<TimeManager>
                 return "";
         }
     }
+
+    public void TestAdvanceGameMinute()
+    {
+        for (int i = 0; i < 60; i++)
+        {
+            UpdateGameSecond();
+        }
+    }
+
+    //TODO:Remove
+    /// <summary>
+    /// Advance 1 day
+    /// </summary>
+    public void TestAdvanceGameDay()
+    {
+        for (int i = 0; i < 86400; i++)
+        {
+            UpdateGameSecond();
+        }
+    }
 }

@@ -70,3 +70,31 @@ MonoBehaviour:
     canBeCarried: 1
     isFurniture: 1
     isPot: 0
+  - itemDescription: Seed Test
+    itemCode: 10004
+    itemType: 0
+    itemSprite: {fileID: 21300000, guid: 7da78110e28e0f74aaa3ef4a41f4c0ed, type: 3}
+    itemLongDescription: Some cool seeds?!
+    itemUseGridRadius: 2
+    itemUseRadius: 2
+    isStartingItem: 1
+    canBePickedUp: 1
+    canBeDropped: 1
+    canBeUsed: 1
+    canBeCarried: 1
+    isFurniture: 0
+    isPot: 0
+  - itemDescription: Parsnip
+    itemCode: 10005
+    itemType: 4
+    itemSprite: {fileID: 21300000, guid: 0a1268bf801d5304ebf16458d7309ac1, type: 3}
+    itemLongDescription: Noice
+    itemUseGridRadius: 2
+    itemUseRadius: 2
+    isStartingItem: 0
+    canBePickedUp: 1
+    canBeDropped: 1
+    canBeUsed: 1
+    canBeCarried: 1
+    isFurniture: 0
+    isPot: 0

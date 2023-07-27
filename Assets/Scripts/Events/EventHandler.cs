@@ -14,6 +14,26 @@ public static class EventHandler
         }
     }
 
+    public static event Action DropSelectedItemEvent;
+
+    public static void CallDropSelectedItemEvent()
+    {
+        if(DropSelectedItemEvent != null)
+        {
+            DropSelectedItemEvent();
+        }
+    }
+
+    public static event Action RemoveSelectedItemFromInventoryEvent;
+
+    public static void CallRemoveSelectedItemFromInventoryEvent()
+    {
+        if(RemoveSelectedItemFromInventoryEvent != null)
+        {
+            RemoveSelectedItemFromInventoryEvent();
+        }
+    }
+
     // Time events
 
     // Advance game minute

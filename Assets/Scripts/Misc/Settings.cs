@@ -15,4 +15,7 @@ public static class Settings
 
     // Tile map
     public const float gridCellSize = 1f; // Grid cell size in unity units
+
+    // Player
+    public static float playerCentreYOffset = 0.875f;
 }
