@@ -187,7 +187,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 InventoryManager.Instance.RemoveItem(InventoryLocation.player, item.ItemCode);
 
                 // If there's no more quantity, clear selected
-                if (InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) > 0)
+                if (InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, item.ItemCode) == -1)
                 {
                     ClearSelectedItem();
                 }
@@ -261,6 +261,11 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
             // Debug the tile map from ItemPickup script
             ItemPickup.Instance.DebugSceneItemTileMap(SceneManager.GetActiveScene().name);
+
+            if (InventoryManager.Instance.FindItemInInventory(InventoryLocation.player, furnitureItem.ItemCode) == -1)
+            {
+                ClearSelectedItem();
+            }
         }
     }
 

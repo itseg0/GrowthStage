@@ -342,6 +342,7 @@ public class GridPropertiesManager : SingletonMonobehaviour<GridPropertiesManage
             Vector3 worldPosition = groundDecoration2.CellToWorld(new Vector3Int(gridPropertyDetails.gridX, gridPropertyDetails.gridY, 0));
 
             worldPosition = new Vector3(worldPosition.x + Settings.gridCellSize / 2, worldPosition.y, worldPosition.z);
+            Debug.Log("Setting position of " + cropDetails.seedItemCode + " to: " + worldPosition);
 
             GameObject cropInstance = Instantiate(cropPrefab, worldPosition, Quaternion.identity);
 

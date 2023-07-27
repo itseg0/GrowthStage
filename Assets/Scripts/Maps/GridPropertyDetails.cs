@@ -9,10 +9,10 @@ public class GridPropertyDetails
     public bool canPlaceFurniture = false;
     public bool isPath = false;
     public bool isNPCObstacle;
-    public int daysSinceWatered;
-    public int seedItemCode;
-    public int growthDays;
-    public int daysSinceLastHarvest;
+    public int daysSinceWatered = -1;
+    public int seedItemCode = -1;
+    public int growthDays = -1 ;
+    public int daysSinceLastHarvest = -1;
     public bool hasItem;
     public bool hasFurniture;
 
