@@ -54,31 +54,23 @@ public class Cursor : MonoBehaviour
 
     private void SetCursorValidity(Vector3 cursorPosition, Vector3 playerPosition)
     {
-        SetCursorToValid();
+        SetCursorToInvalid(); // Set to invalid by default
 
         // Check use radius corners
-
         if (
-            cursorPosition.x > (playerPosition.x + ItemUseRadius / 2f) && cursorPosition.y > (playerPosition.y + ItemUseRadius / 2f)
-            ||
-            cursorPosition.x < (playerPosition.x - ItemUseRadius / 2f) && cursorPosition.y > (playerPosition.y + ItemUseRadius / 2f)
-            ||
-            cursorPosition.x < (playerPosition.x - ItemUseRadius / 2f) && cursorPosition.y < (playerPosition.y - ItemUseRadius / 2f)
-            ||
+            cursorPosition.x > (playerPosition.x + ItemUseRadius / 2f) && cursorPosition.y > (playerPosition.y + ItemUseRadius / 2f) ||
+            cursorPosition.x < (playerPosition.x - ItemUseRadius / 2f) && cursorPosition.y > (playerPosition.y + ItemUseRadius / 2f) ||
+            cursorPosition.x < (playerPosition.x - ItemUseRadius / 2f) && cursorPosition.y < (playerPosition.y - ItemUseRadius / 2f) ||
             cursorPosition.x > (playerPosition.x + ItemUseRadius / 2f) && cursorPosition.y < (playerPosition.y - ItemUseRadius / 2f)
-            )
-
+        )
         {
-            SetCursorToInvalid();
-            return;
+            return; // Cursor is already invalid, return without further checks
         }
 
         // Check item use radius is valid
-        if (Mathf.Abs(cursorPosition.x - playerPosition.x) > ItemUseRadius
-            || Mathf.Abs(cursorPosition.y - playerPosition.y) > ItemUseRadius)
+        if (Mathf.Abs(cursorPosition.x - playerPosition.x) > ItemUseRadius || Mathf.Abs(cursorPosition.y - playerPosition.y) > ItemUseRadius)
         {
-            SetCursorToInvalid();
-            return;
+            return; // Cursor is already invalid, return without further checks
         }
 
         // Get selected item details
@@ -86,10 +78,45 @@ public class Cursor : MonoBehaviour
 
         if (itemDetails == null)
         {
-            SetCursorToInvalid();
-            return;
+            return; // Cursor is already invalid, return without further checks
         }
+
+        
     }
+
+    private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition, int itemCode)
+    {
+        ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
+
+        if (itemPickup == null)
+        {
+            Debug.LogError("ItemPickup not found in the scene.");
+            return false;
+        }
+
+        // Get the current scene name
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        // Check if the current scene exists in the sceneItemTileMaps dictionary
+        if (itemPickup.sceneItemTileMaps.TryGetValue(currentSceneName, out Dictionary<string, (Vector3Int gridPosition, int itemCode)> sceneItemTileMap))
+        {
+            // Check if the grid position exists in the current scene's itemTileMap and has the specified item code
+            foreach (var entry in sceneItemTileMap)
+            {
+                // Get the item code for the item at the grid position
+                int itemCodeAtPosition = entry.Value.itemCode;
+                if (itemCodeAtPosition == itemCode && entry.Value.gridPosition == gridPosition)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+
 
     /// <summary>
     /// Set the cursor to be valid

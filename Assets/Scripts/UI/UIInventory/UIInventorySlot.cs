@@ -156,21 +156,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 centeredPosition.x += itemHalfWidth;
                 centeredPosition.y += itemHalfHeight;
 
-                // Check if there's already furniture on the target tile
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(tileCenterWorldPosition, 0.1f); // Adjust the radius as needed
-
-                if (colliders.Length > 0)
-                {
-                    foreach (Collider2D collider in colliders)
-                    {
-                        // Check if there's furniture in the tile
-                        if (collider.CompareTag("Furniture") || collider.CompareTag("Item"))
-                        {
-                            Debug.Log("Cannot drop multiple furniture items in the same tile!");
-                            return;
-                        }
-                    }
-                }
 
                 // Create item from prefab at centered position
                 GameObject itemGameObject = Instantiate(itemPrefab, centeredPosition, Quaternion.identity, parentItem);
@@ -193,7 +178,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 }
 
                 // Use ItemPickup script to add item to the tile map
-                ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, item.UniqueIdentifier.ToString(), gridPosition);
+                ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, item.UniqueIdentifier.ToString(), gridPosition, item.ItemCode);
 
                 // Debug the tile map from ItemPickup script
                 ItemPickup.Instance.DebugSceneItemTileMap(SceneManager.GetActiveScene().name);
@@ -212,22 +197,6 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCamera.transform.position.z));
             Vector3Int gridPosition = GridPropertiesManager.Instance.grid.WorldToCell(worldPosition);
             Vector3 tileCenterWorldPosition = GridPropertiesManager.Instance.grid.GetCellCenterWorld(gridPosition);
-
-            // Check if there's already furniture on the target tile
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(tileCenterWorldPosition, 0.1f); // Adjust the radius as needed
-
-            if (colliders.Length > 0)
-            {
-                foreach (Collider2D collider in colliders)
-                {
-                    // Check if there's furniture in the tile
-                    if (collider.CompareTag("Furniture") || collider.CompareTag("Item"))
-                    {
-                        Debug.Log("Cannot drop multiple furniture items in the same tile!");
-                        return;
-                    }
-                }
-            }
 
             // Center the furniture on the tile
             float itemHalfWidth = furniturePrefab1x1.GetComponentInChildren<SpriteRenderer>().bounds.extents.x;
@@ -257,7 +226,7 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             InventoryManager.Instance.RemoveItem(InventoryLocation.player, furnitureItem.ItemCode);
 
             // Use ItemPickup script to add item to the tile map
-            ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, furnitureItem.UniqueIdentifier.ToString(), gridPosition);
+            ItemPickup.Instance.AddItemToSceneTileMap(SceneManager.GetActiveScene().name, furnitureItem.UniqueIdentifier.ToString(), gridPosition, furnitureItem.ItemCode);
 
             // Debug the tile map from ItemPickup script
             ItemPickup.Instance.DebugSceneItemTileMap(SceneManager.GetActiveScene().name);

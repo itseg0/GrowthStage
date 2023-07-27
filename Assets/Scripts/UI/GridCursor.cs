@@ -67,14 +67,9 @@ public class GridCursor : MonoBehaviour
             // Get grid position for player
             Vector3Int playerGridPosition = GetGridPositionForPlayer();
 
-            // Debug.Log("Is Tile Occupied: " + IsItemOccupiedAtGridPosition(gridPosition));
+            // Debug.Log("Is Tile Occupied: " + IsItemOccupiedAtGridPosition(gridPosition, 10003));
 
             // Set cursor validity based on item occupancy
-            if (IsItemOccupiedAtGridPosition(gridPosition))
-            {
-                SetCursorToInvalid();
-            }
-
             SetCursorValidity(gridPosition, playerGridPosition);
 
             // Get rect transform position for cursor
@@ -90,26 +85,26 @@ public class GridCursor : MonoBehaviour
 
     private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition)
     {
-        ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
+        return IsItemOccupiedAtGridPosition(gridPosition, -1); // Default item code to -1 when not specified
+    }
 
-        if (itemPickup == null)
+    private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition, int itemCode)
+    {
+        Dictionary<string, (Vector3Int gridPosition, int itemCode)> sceneItemTileMap = GetSceneItemTileMap();
+
+        if (sceneItemTileMap != null)
         {
-            Debug.LogError("ItemPickup not found in the scene.");
-            return false;
-        }
-
-        // Get the current scene name
-        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-
-        // Check if the current scene exists in the sceneItemTileMaps dictionary
-        if (itemPickup.sceneItemTileMaps.TryGetValue(currentSceneName, out Dictionary<string, Vector3Int> sceneItemTileMap))
-        {
-            // Check if the grid position exists in the current scene's itemTileMap
+            // Check if the grid position exists in the current scene's itemTileMap and has the specified item code
             foreach (var entry in sceneItemTileMap)
             {
-                if (entry.Value == gridPosition)
+                // Get the item code for the item at the grid position
+                int itemCodeAtPosition = entry.Value.itemCode;
+                if (itemCode == -1 || itemCodeAtPosition == itemCode) // If itemCode is -1, we ignore the item code check
                 {
-                    return true;
+                    if (entry.Value.gridPosition == gridPosition)
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -117,7 +112,27 @@ public class GridCursor : MonoBehaviour
         return false;
     }
 
+    private Dictionary<string, (Vector3Int gridPosition, int itemCode)> GetSceneItemTileMap()
+    {
+        ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
 
+        if (itemPickup == null)
+        {
+            Debug.LogError("ItemPickup not found in the scene.");
+            return null;
+        }
+
+        // Get the current scene name
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        // Check if the current scene exists in the sceneItemTileMaps dictionary
+        if (itemPickup.sceneItemTileMaps.TryGetValue(currentSceneName, out Dictionary<string, (Vector3Int gridPosition, int itemCode)> sceneItemTileMap))
+        {
+            return sceneItemTileMap;
+        }
+
+        return null;
+    }
 
 
     private void SceneLoaded()
@@ -127,6 +142,9 @@ public class GridCursor : MonoBehaviour
 
     private void SetCursorValidity(Vector3Int cursorGridPosition, Vector3Int playerGridPosition)
     {
+
+        SetCursorToValid();
+
         // Check item use radius is valid
         if (Mathf.Abs(cursorGridPosition.x - playerGridPosition.x) > ItemUseGridRadius
             || Mathf.Abs(cursorGridPosition.y - playerGridPosition.y) > ItemUseGridRadius)
@@ -153,7 +171,7 @@ public class GridCursor : MonoBehaviour
             switch (itemDetails.itemType)
             {
                 case ItemType.Seed:
-                    if (!IsCursorValidForSeed(gridPropertyDetails))
+                    if (!IsCursorValidForSeed(gridPropertyDetails) && !IsItemOccupiedAtGridPosition(cursorGridPosition, 10003))
                     {
                         SetCursorToInvalid();
                         return;
@@ -185,14 +203,26 @@ public class GridCursor : MonoBehaviour
         }
 
         // Check item occupancy
-        if (IsItemOccupiedAtGridPosition(cursorGridPosition))
+        if (SelectedItemType == ItemType.Seed)
         {
-            SetCursorToInvalid();
+            if (IsItemOccupiedAtGridPosition(cursorGridPosition, 10003))
+            {
+                SetCursorToValid(); // Cursor is valid if it is a Seed and placed above an item with code 10003.
+            }
+            else
+            {
+                SetCursorToInvalid(); // Cursor is invalid if it is a Seed but not placed above an item with code 10003.
+            }
+        }
+        else if (IsItemOccupiedAtGridPosition(cursorGridPosition))
+        {
+            SetCursorToInvalid(); // Cursor is invalid if it's not a Seed but placed above any item.
         }
         else
         {
-            SetCursorToValid();
+            SetCursorToValid(); // Cursor is valid if it's not a Seed and not placed above any item.
         }
+
     }
 
 

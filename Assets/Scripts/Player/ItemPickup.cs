@@ -6,7 +6,7 @@ public class ItemPickup : MonoBehaviour
     public static ItemPickup Instance { get; private set; }
 
     // This will store the itemTileMap for each scene
-    public Dictionary<string, Dictionary<string, Vector3Int>> sceneItemTileMaps = new Dictionary<string, Dictionary<string, Vector3Int>>();
+    public Dictionary<string, Dictionary<string, (Vector3Int gridPosition, int itemCode)>> sceneItemTileMaps = new Dictionary<string, Dictionary<string, (Vector3Int, int)>>();
 
     private void Awake()
     {
@@ -22,13 +22,13 @@ public class ItemPickup : MonoBehaviour
     }
 
     // Add items to the itemTileMap of a specific scene
-    public void AddItemToSceneTileMap(string sceneName, string uniqueIdentifier, Vector3Int gridPosition)
+    public void AddItemToSceneTileMap(string sceneName, string uniqueIdentifier, Vector3Int gridPosition, int itemCode)
     {
         if (!sceneItemTileMaps.ContainsKey(sceneName))
         {
-            sceneItemTileMaps[sceneName] = new Dictionary<string, Vector3Int>();
+            sceneItemTileMaps[sceneName] = new Dictionary<string, (Vector3Int, int)>();
         }
-        sceneItemTileMaps[sceneName].Add(uniqueIdentifier, gridPosition);
+        sceneItemTileMaps[sceneName].Add(uniqueIdentifier, (gridPosition, itemCode));
     }
 
     // Remove items from the itemTileMap of a specific scene
@@ -42,12 +42,12 @@ public class ItemPickup : MonoBehaviour
 
     public void DebugSceneItemTileMap(string sceneName)
     {
-        if (sceneItemTileMaps.TryGetValue(sceneName, out Dictionary<string, Vector3Int> sceneItemTileMap))
+        if (sceneItemTileMaps.TryGetValue(sceneName, out Dictionary<string, (Vector3Int, int)> sceneItemTileMap))
         {
             Debug.Log($"ItemTileMap for scene {sceneName}:");
             foreach (var entry in sceneItemTileMap)
             {
-                Debug.Log("Key: " + entry.Key + ", Value: " + entry.Value);
+                Debug.Log($"Key: {entry.Key}, GridPosition: {entry.Value.Item1}, ItemCode: {entry.Value.Item2}");
             }
         }
         else
@@ -55,6 +55,7 @@ public class ItemPickup : MonoBehaviour
             Debug.LogWarning($"Scene {sceneName} not found in sceneItemTileMaps.");
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
