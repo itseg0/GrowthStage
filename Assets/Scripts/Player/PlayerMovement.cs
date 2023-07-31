@@ -160,11 +160,6 @@ public class PlayerMovement : SingletonMonobehaviour<PlayerMovement>
             PlantSeedAtCursor(gridPropertyDetails, itemDetails);
             Debug.Log("Dropping seed V1");
         }
-        else if (itemDetails.canBePlanted)
-        {
-            PlantSeedAtCursor(gridPropertyDetails, itemDetails);
-            Debug.Log("Dropping seed V2");
-        }
     }
 
     private void PlayerClickInput()
