@@ -21,4 +21,5 @@ public class ItemDetails
     public bool canBeCarried;
     public bool isFurniture;
     public bool isPot;
+    public bool canBePlanted;
 }

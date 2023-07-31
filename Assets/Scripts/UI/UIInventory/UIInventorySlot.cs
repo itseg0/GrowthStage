@@ -62,6 +62,57 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
+    private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition)
+    {
+        return IsItemOccupiedAtGridPosition(gridPosition, -1); // Default item code to -1 when not specified
+    }
+
+    private bool IsItemOccupiedAtGridPosition(Vector3Int gridPosition, int itemCode)
+    {
+        Dictionary<string, (Vector3Int gridPosition, int itemCode)> sceneItemTileMap = GetSceneItemTileMap();
+
+        if (sceneItemTileMap != null)
+        {
+            // Check if the grid position exists in the current scene's itemTileMap and has the specified item code
+            foreach (var entry in sceneItemTileMap)
+            {
+                // Get the item code for the item at the grid position
+                int itemCodeAtPosition = entry.Value.itemCode;
+                if (itemCode == -1 || itemCodeAtPosition == itemCode) // If itemCode is -1, we ignore the item code check
+                {
+                    if (entry.Value.gridPosition == gridPosition)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private Dictionary<string, (Vector3Int gridPosition, int itemCode)> GetSceneItemTileMap()
+    {
+        ItemPickup itemPickup = FindObjectOfType<ItemPickup>();
+
+        if (itemPickup == null)
+        {
+            Debug.LogError("ItemPickup not found in the scene.");
+            return null;
+        }
+
+        // Get the current scene name
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        // Check if the current scene exists in the sceneItemTileMaps dictionary
+        if (itemPickup.sceneItemTileMaps.TryGetValue(currentSceneName, out Dictionary<string, (Vector3Int gridPosition, int itemCode)> sceneItemTileMap))
+        {
+            return sceneItemTileMap;
+        }
+
+        return null;
+    }
+
     private void OnEnable()
     {
         EventHandler.AfterSceneLoadEvent += SceneLoaded;
@@ -308,16 +359,27 @@ public class UIInventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
                 // Clear selected item
                 ClearSelectedItem();
+
+                
             }
             // Else attempt to drop the item if it can be dropped
             else
             {
-                if(itemDetails.canBeDropped)
+                if(itemDetails.canBeDropped || itemDetails.canBePlanted)
                 {
+                    Vector3Int cursorGridPosition = gridCursor.GetGridPositionForCursor();
 
-                    if(itemDetails.isFurniture)
+                    if (itemDetails.isFurniture)
                     {
                         DropSelectedFurnitureAtMousePosition();
+                    }
+
+                    else if (itemDetails.canBePlanted && IsItemOccupiedAtGridPosition(cursorGridPosition, 10003))
+                    {
+                        Vector3Int gridPosition = gridCursor.GetGridPositionForCursor();
+
+                        GridPropertyDetails gridPropertyDetails = GridPropertiesManager.Instance.GetGridPropertyDetails(gridPosition.x, gridPosition.y);
+                        PlayerMovement.Instance.ProcessPlayerClickInputSeed(gridPropertyDetails, itemDetails);
                     }
 
                     else

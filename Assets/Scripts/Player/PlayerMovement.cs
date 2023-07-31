@@ -153,16 +153,17 @@ public class PlayerMovement : SingletonMonobehaviour<PlayerMovement>
         }
     }
 
-    private void ProcessPlayerClickInputSeed(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
+    public void ProcessPlayerClickInputSeed(GridPropertyDetails gridPropertyDetails, ItemDetails itemDetails)
     {
-        if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid && gridPropertyDetails.seedItemCode == -1)
+        if (itemDetails.canBePlanted && gridCursor.CursorPositionIsValid && gridPropertyDetails.seedItemCode == -1)
         {
             PlantSeedAtCursor(gridPropertyDetails, itemDetails);
             Debug.Log("Dropping seed V1");
         }
-        else if (itemDetails.canBeDropped && gridCursor.CursorPositionIsValid)
+        else if (itemDetails.canBePlanted)
         {
-            
+            PlantSeedAtCursor(gridPropertyDetails, itemDetails);
+            Debug.Log("Dropping seed V2");
         }
     }
 

@@ -4448,6 +4448,7 @@ MonoBehaviour:
     canBeCarried: 0
     isFurniture: 0
     isPot: 0
+    canBePlanted: 0
   itemQuantity: 0
   isSelected: 0
 --- !u!114 &1836414918400483714

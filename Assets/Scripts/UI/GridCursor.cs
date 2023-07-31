@@ -186,7 +186,12 @@ public class GridCursor : MonoBehaviour
                     }
                     break;
 
-                case ItemType.none:
+                case ItemType.Furniture:
+                    if (!IsCursorValidForFurniture(gridPropertyDetails))
+                    {
+                        SetCursorToInvalid();
+                        return;
+                    }
                     break;
 
                 case ItemType.count:
@@ -261,6 +266,11 @@ public class GridCursor : MonoBehaviour
     {
         return gridPropertyDetails.canDropItem;
 
+    }
+
+    private bool IsCursorValidForFurniture(GridPropertyDetails gridPropertyDetails)
+    {
+        return gridPropertyDetails.canPlaceFurniture;
     }
 
     public void DisableCursor()

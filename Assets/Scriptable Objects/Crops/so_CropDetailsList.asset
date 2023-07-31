@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: so_CropDetailsList
   m_EditorClassIdentifier: 
   cropDetails:
-  - seedItemCode: 10004
+  - seedItemCode: 10006
     growthDays: 0000000001000000010000000100000002000000
     totalGrowthDays: 5
     growthPrefab:
@@ -28,6 +28,35 @@ MonoBehaviour:
     - {fileID: -1602534099, guid: 4a3bba6625522854391e41214b6aa86c, type: 3}
     - {fileID: -1153387774, guid: 4a3bba6625522854391e41214b6aa86c, type: 3}
     - {fileID: -322009341, guid: 4a3bba6625522854391e41214b6aa86c, type: 3}
+    seasons: 0000000001000000
+    harvestedSprite: {fileID: 21300000, guid: 0a1268bf801d5304ebf16458d7309ac1, type: 3}
+    harvestedTransformItemCode: 0
+    hideCropBeforeHarvestedAnimation: 0
+    disableCropCollidersBeforeHarvestedAnimation: 0
+    isHarvestedAnimation: 0
+    isHarvestActionEffect: 0
+    spawnCropProducedAtPlayerPosition: 0
+    harvestToolItemCode: 
+    requiredHarvestActions: 
+    cropProducedItemCode: 15270000
+    cropProducedMinQuantity: 01000000
+    cropProducedMaxQuantity: 01000000
+    daysToRegrow: 0
+  - seedItemCode: 10007
+    growthDays: 0000000001000000010000000100000002000000
+    totalGrowthDays: 5
+    growthPrefab:
+    - {fileID: 6396846229651493262, guid: 739f9e93966700347a9038107ab7a02a, type: 3}
+    - {fileID: 6396846229651493262, guid: 739f9e93966700347a9038107ab7a02a, type: 3}
+    - {fileID: 6396846229651493262, guid: 739f9e93966700347a9038107ab7a02a, type: 3}
+    - {fileID: 6396846229651493262, guid: 739f9e93966700347a9038107ab7a02a, type: 3}
+    - {fileID: 6396846229651493262, guid: 24fb2885a794b3b458eb9725e7ec11e1, type: 3}
+    growthSprite:
+    - {fileID: 101853385, guid: 4a3bba6625522854391e41214b6aa86c, type: 3}
+    - {fileID: 2068807088, guid: 089aa7928905c084a868252040f4737a, type: 3}
+    - {fileID: 848553522, guid: 089aa7928905c084a868252040f4737a, type: 3}
+    - {fileID: -1144334313, guid: 39906127b81dabf4b927ad6e649fe119, type: 3}
+    - {fileID: 1995150237, guid: 089aa7928905c084a868252040f4737a, type: 3}
     seasons: 0000000001000000
     harvestedSprite: {fileID: 21300000, guid: 0a1268bf801d5304ebf16458d7309ac1, type: 3}
     harvestedTransformItemCode: 0
